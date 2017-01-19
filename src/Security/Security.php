@@ -307,13 +307,11 @@ class Security extends Controller implements TemplateGlobalProvider
                 $messageSet = array(
                     'default' => _t(
                         'Security.NOTEPAGESECURED',
-                        "That page is secured. Enter your credentials below and we will send "
-                            . "you right along."
+                        "That page is secured. Enter your credentials below and we will send you right along."
                     ),
                     'alreadyLoggedIn' => _t(
                         'Security.ALREADYLOGGEDIN',
-                        "You don't have access to this page.  If you have another account that "
-                            . "can access that page, you can log in again below.",
+                        "You don't have access to this page.  If you have another account that can access that page, you can log in again below.",
                         "%s will be replaced with a link to log in."
                     )
                 );
@@ -700,12 +698,10 @@ class Security extends Controller implements TemplateGlobalProvider
 
         $customisedController = $controller->customise(array(
             'Content' =>
-                '<p>' .
                 _t(
                     'Security.NOTERESETPASSWORD',
                     'Enter your e-mail address and we will send you a link with which you can reset your password'
-                ) .
-                '</p>',
+                ),
             'Form' => $this->LostPasswordForm(),
         ));
 
@@ -764,14 +760,11 @@ class Security extends Controller implements TemplateGlobalProvider
                 array('email' => $email)
             ),
             'Content' =>
-                "<p>"
-                . _t(
+                _t(
                     'Security.PASSWORDSENTTEXT',
-                    "Thank you! A reset link has been sent to '{email}', provided an account exists for this email"
-                    . " address.",
+                    "Thank you! A reset link has been sent to '{email}', provided an account exists for this email address.",
                     array('email' => $email)
-                )
-                . "</p>",
+                ),
             'Email' => $email
         ));
 
@@ -845,16 +838,13 @@ class Security extends Controller implements TemplateGlobalProvider
             // Subsequent request after the "first load with hash" (see previous if clause).
             $customisedController = $controller->customise(array(
                 'Content' =>
-                    '<p>' .
-                    _t('Security.ENTERNEWPASSWORD', 'Please enter a new password.') .
-                    '</p>',
+                    _t('Security.ENTERNEWPASSWORD', 'Please enter a new password.'),
                 'Form' => $this->ChangePasswordForm(),
             ));
         } elseif (Member::currentUser()) {
             // Logged in user requested a password change form.
             $customisedController = $controller->customise(array(
-                'Content' => '<p>'
-                    . _t('Security.CHANGEPASSWORDBELOW', 'You can change your password below.') . '</p>',
+                'Content' => _t('Security.CHANGEPASSWORDBELOW', 'You can change your password below.'),
                 'Form' => $this->ChangePasswordForm()));
         } else {
             // Show friendly message if it seems like the user arrived here via password reset feature.
